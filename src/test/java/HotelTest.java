@@ -94,4 +94,11 @@ public class HotelTest {
         hotel.makeBooking(bedroom, 3, guest);
         assertEquals(1434.0, guest.getMoney());
     }
+
+    @Test
+    public void bookingRetainsMoney(){
+        hotel.makeBooking(bedroom, 3, guest);
+        hotel.makeBooking(bedroom2, 1, guest3);
+        assertEquals(121.60, hotel.getFunds());
+    }
 }

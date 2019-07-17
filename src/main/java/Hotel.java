@@ -9,6 +9,7 @@ public class Hotel {
     private ArrayList<Bedroom> vacants;
     private ArrayList<Bedroom> bookedRooms;
     private Guest guest;
+    private double funds;
 
     public Hotel(){
         this.bedrooms = new ArrayList<Bedroom>();
@@ -17,6 +18,7 @@ public class Hotel {
         this.vacants = new ArrayList<Bedroom>();
         this.bookedRooms = new ArrayList<Bedroom>();
         this.guest = new Guest("Ted", 21.51);
+        this.funds = 0;
     }
 
     public void addBedroom(Bedroom bedroom) {
@@ -57,6 +59,7 @@ public class Hotel {
             this.bookings.add(booking);
             this.bookedRooms.add(bedroom);
             guest.payMoney(booking);
+            this.funds += booking.getTotal();
         }
     }
 
@@ -77,4 +80,7 @@ public class Hotel {
         return this.bookedRooms.size();
     }
 
+    public double getFunds() {
+        return this.funds;
+    }
 }
