@@ -101,4 +101,11 @@ public class HotelTest {
         hotel.makeBooking(bedroom2, 1, guest3);
         assertEquals(121.60, hotel.getFunds());
     }
+
+    @Test
+    public void cantCheckGuestInTwice(){
+        hotel.makeBooking(bedroom, 1, guest);
+        hotel.makeBooking(bedroom3, 1, guest);
+        assertEquals(1, hotel.getBookingsAmount());
+    }
 }

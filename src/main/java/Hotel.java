@@ -8,6 +8,7 @@ public class Hotel {
     private ArrayList<Booking> bookings;
     private ArrayList<Bedroom> vacants;
     private ArrayList<Bedroom> bookedRooms;
+    private ArrayList<Guest> bookedGuests;
     private Guest guest;
     private double funds;
 
@@ -17,6 +18,7 @@ public class Hotel {
         this.bookings = new ArrayList<Booking>();
         this.vacants = new ArrayList<Bedroom>();
         this.bookedRooms = new ArrayList<Bedroom>();
+        this.bookedGuests = new ArrayList<Guest>();
         this.guest = new Guest("Ted", 21.51);
         this.funds = 0;
     }
@@ -54,9 +56,10 @@ public class Hotel {
     }
 
     public void makeBooking(Bedroom bedroom, int nightsBooked, Guest guest) {
-        if (!this.bookedRooms.contains(bedroom) && guest.getMoney() >= (bedroom.getPrice() * nightsBooked)) {
+        if (!this.bookedGuests.contains(guest) && !this.bookedRooms.contains(bedroom) && guest.getMoney() >= (bedroom.getPrice() * nightsBooked)) {
             Booking booking = new Booking(nightsBooked, bedroom, guest);
             this.bookings.add(booking);
+            this.bookedGuests.add(guest);
             this.bookedRooms.add(bedroom);
             guest.payMoney(booking);
             this.funds += booking.getTotal();
